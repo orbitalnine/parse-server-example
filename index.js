@@ -14,7 +14,7 @@ if (!databaseUri) {
 console.log("LOG_LEVEL = " + (process.env.LOG_LEVEL || "INFO"));
 
 var serverOptions = {
-  verbose: true,
+  verbose: 1,
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
