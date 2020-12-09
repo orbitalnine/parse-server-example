@@ -25,7 +25,7 @@ var serverOptions = {
   logLevel: process.env.LOG_LEVEL || "INFO"
 };
 
-console.log("Server Options = " + serverOptions);
+console.table("Server Options = " + serverOptions);
 
 var api = new ParseServer(serverOptions);
 
