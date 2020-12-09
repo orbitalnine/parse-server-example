@@ -26,7 +26,7 @@ var serverOptions = {
 };
 
 console.log("Server Options: ");
-console.table(serverOptions);
+console.log(JSON.stringify(serverOptions, null, 2));
 
 var api = new ParseServer(serverOptions);
 
