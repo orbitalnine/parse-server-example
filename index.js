@@ -25,7 +25,8 @@ var serverOptions = {
   logLevel: process.env.LOG_LEVEL || "INFO"
 };
 
-if (process.env.LOG_LEVEL && process.env.LOG_LEVEL == "VERBOSE")
+if ((process.env.LOG_LEVEL && process.env.LOG_LEVEL == "VERBOSE") ||
+    (process.env.VERBOSE))
 {
 	serverOptions["verbose"] = 1;
 }
