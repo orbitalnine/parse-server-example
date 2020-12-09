@@ -22,15 +22,13 @@ var serverOptions = {
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   },
-  logLevel: process.env.LOG_LEVEL || "INFO",
-  verbose: process.env.VERBOSE_LEVEL || 0
+  logLevel: process.env.LOG_LEVEL || "INFO"
 };
 
-/*if (process.env.LOG_LEVEL && process.env.LOG_LEVEL == "VERBOSE")
+if (process.env.LOG_LEVEL && process.env.LOG_LEVEL == "VERBOSE")
 {
-	serverOptions["logLevel"] = 'INFO';
-	serverOptions["verbose"] = '1';
-}*/
+	serverOptions["verbose"] = 1;
+}
 
 console.log("Server Options: ");
 console.log(JSON.stringify(serverOptions, null, 2));
