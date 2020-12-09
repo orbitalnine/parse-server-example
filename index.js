@@ -14,7 +14,6 @@ if (!databaseUri) {
 console.log("LOG_LEVEL = " + (process.env.LOG_LEVEL || "INFO"));
 
 var serverOptions = {
-  verbose: 1,
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
@@ -26,10 +25,10 @@ var serverOptions = {
   logLevel: process.env.LOG_LEVEL || "INFO"
 };
 
-/*if (process.env.LOG_LEVEL && process.env.LOG_LEVEL == "VERBOSE")
+if (process.env.LOG_LEVEL && process.env.LOG_LEVEL == "VERBOSE")
 {
 	serverOptions["verbose"] = 1;
-}*/
+}
 
 console.log("Server Options: ");
 console.log(JSON.stringify(serverOptions, null, 2));
