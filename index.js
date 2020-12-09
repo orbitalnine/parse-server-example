@@ -11,8 +11,6 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
-console.log("LOG_LEVEL = " + (process.env.LOG_LEVEL || "info"));
-
 var serverOptions = {
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
@@ -25,14 +23,7 @@ var serverOptions = {
   logLevel: process.env.LOG_LEVEL || "info"
 };
 
-/*if ((process.env.LOG_LEVEL && process.env.LOG_LEVEL == "verbose") ||
-    (process.env.VERBOSE))
-{
-	serverOptions["verbose"] = 1;
-}*/
-
-console.log("Server Options: ");
-console.log(JSON.stringify(serverOptions, null, 2));
+console.log("LOG_LEVEL = " + serverOptions["logLevel"]);
 
 var api = new ParseServer(serverOptions);
 
