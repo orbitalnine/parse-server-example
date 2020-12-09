@@ -22,7 +22,7 @@ var serverOptions = {
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   },
-  logLevel: process.env.LOG_LEVEL || "INFO"
+  logLevel: process.env.LOG_LEVEL || "INFO",
   verbose: process.env.VERBOSE_LEVEL || 0
 };
 
