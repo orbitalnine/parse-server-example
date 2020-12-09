@@ -25,11 +25,11 @@ var serverOptions = {
   logLevel: process.env.LOG_LEVEL || "info"
 };
 
-if ((process.env.LOG_LEVEL && process.env.LOG_LEVEL == "verbose") ||
+/*if ((process.env.LOG_LEVEL && process.env.LOG_LEVEL == "verbose") ||
     (process.env.VERBOSE))
 {
 	serverOptions["verbose"] = 1;
-}
+}*/
 
 console.log("Server Options: ");
 console.log(JSON.stringify(serverOptions, null, 2));
