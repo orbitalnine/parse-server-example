@@ -13,7 +13,7 @@ if (!databaseUri) {
 
 console.log("LOG_LEVEL = " + (process.env.LOG_LEVEL || "INFO"));
 
-var api = new ParseServer({
+var serverOptions = {
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
@@ -23,7 +23,12 @@ var api = new ParseServer({
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   },
   logLevel: process.env.LOG_LEVEL || "INFO"
-});
+};
+
+console.log("Server Options = " + serverOptions);
+
+var api = new ParseServer(serverOptions);
+
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
