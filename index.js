@@ -27,8 +27,8 @@ var serverOptions = {
 
 if (process.env.LOG_LEVEL && process.env.LOG_LEVEL == "VERBOSE")
 {
-	serverOptions["logLevel"] = "INFO";
-	serverOptions["verbose"] = 1;
+	serverOptions["logLevel"] = 'INFO';
+	serverOptions["verbose"] = '1';
 }
 
 console.log("Server Options: ");
