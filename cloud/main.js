@@ -21,18 +21,44 @@ Parse.Cloud.define('validateUser', async(request) =>
 	var currentDate = new Date();
 	var banned = (m_bannedIPs.indexOf(clientIP) >= 0);
 	
-	const User = Parse.Object.extend("User");
-	const user = new User();
-	user.set("username", request.params.username);
-	user.set("userid", request.params.userid);
-	user.set("lastlogin", currentDate);
-	user.set("banned", banned);
-	user.save();
+	const UserHistory = Parse.Object.extend("UserHistory");
+	const query = new Parse.Query(UserHistory);
+	query.equalTo("username", request.params.username);
+	const result = await query.first();
+	if (result != null)
+	{
+		result.set("lastlogin", currentDate);
+		result.set("banned", banned);
+		result.set("ip", clientIP);
+		await result.save().then((result) => 
+		{
+			console.log("User history updated.");
+		}, (error) => 
+		{
+			console.error("Error updating user history: " + error);
+		});
+	}
+	else
+	{
+		const uhistory = new UserHistory();
+		uhistory.set("username", request.params.username);
+		uhistory.set("playername", request.params.playername);
+		uhistory.set("lastlogin", currentDate);
+		uhistory.set("ip", clientIP);
+		uhistory.set("banned", banned);
+		await uhistory.save().then((uhistory) => 
+		{
+			console.log("User history created.");
+		}, (error) => 
+		{
+			console.error("Error creating user history: " + error);
+		});
+	}
 	
 	if (banned)
 		return false;
 	else
 		return true;
 },{
-	fields : ['username', 'userid']
+	fields : ['username', 'playername']
 });
