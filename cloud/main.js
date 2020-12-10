@@ -34,14 +34,5 @@ Parse.Cloud.define('validateUser', async(request) =>
 	else
 		return true;
 },{
-	fields : {
-		username : {
-			required: true,
-			type: string
-		},
-		userid : {
-			required: true,
-			type: string
-		}
-	}
+	fields : ['username', 'userid']
 });
