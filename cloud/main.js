@@ -1,5 +1,5 @@
 
-var m_bannedIPs = ["109.12.81.168", "70.36.60.80"];
+var m_bannedIPs = ["109.12.81.168"];
 
 Parse.Cloud.define('hello', function(req, res) 
 {
