@@ -20,13 +20,18 @@ Parse.Cloud.define('validateUser', async(request) =>
 	var clientIP = request.headers['x-forwarded-for'];
 	var currentDate = new Date();
 	var banned = (m_bannedIPs.indexOf(clientIP) >= 0);
+	var username = request.params.username;
+	var playername = request.params.playername;
+	var version = request.params.version;
 	
 	const UserHistory = Parse.Object.extend("UserHistory");
 	const query = new Parse.Query(UserHistory);
-	query.equalTo("username", request.params.username);
+	query.equalTo("username", username);
 	const result = await query.first();
 	if (result != null)
 	{
+		result.set("username", username);
+		result.set("playername", playername);
 		result.set("lastlogin", currentDate);
 		result.set("banned", banned);
 		result.set("ip", clientIP);
@@ -41,8 +46,8 @@ Parse.Cloud.define('validateUser', async(request) =>
 	else
 	{
 		const uhistory = new UserHistory();
-		uhistory.set("username", request.params.username);
-		uhistory.set("playername", request.params.playername);
+		uhistory.set("username", username);
+		uhistory.set("playername", playername);
 		uhistory.set("lastlogin", currentDate);
 		uhistory.set("ip", clientIP);
 		uhistory.set("banned", banned);
@@ -60,5 +65,5 @@ Parse.Cloud.define('validateUser', async(request) =>
 	else
 		return true;
 },{
-	fields : ['username', 'playername']
+	fields : ['username', 'playername', 'version']
 });
