@@ -35,6 +35,7 @@ Parse.Cloud.define('validateUser', async(request) =>
 		result.set("lastlogin", currentDate);
 		result.set("banned", banned);
 		result.set("ip", clientIP);
+		result.set("version", version);
 		await result.save().then((result) => 
 		{
 			console.log("User history updated.");
@@ -49,8 +50,9 @@ Parse.Cloud.define('validateUser', async(request) =>
 		uhistory.set("username", username);
 		uhistory.set("playername", playername);
 		uhistory.set("lastlogin", currentDate);
-		uhistory.set("ip", clientIP);
 		uhistory.set("banned", banned);
+		uhistory.set("ip", clientIP);
+		uhistory.set("version", version);
 		await uhistory.save().then((uhistory) => 
 		{
 			console.log("User history created.");
