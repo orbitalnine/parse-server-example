@@ -67,5 +67,5 @@ Parse.Cloud.define('validateUser', async(request) =>
 	else
 		return true;
 },{
-	fields : ['username', 'playername', 'version']
+	fields : ['username', 'playername']
 });
