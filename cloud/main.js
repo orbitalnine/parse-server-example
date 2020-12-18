@@ -23,6 +23,10 @@ Parse.Cloud.define('validateUser', async(request) =>
 	var username = request.params.username;
 	var playername = request.params.playername;
 	var version = request.params.version;
+	var purchased = request.params.purchased;
+	var devicetype = request.params.devicetype;
+	var devicename = request.params.devicename;
+	var devicemodel = request.params.devicemodel;
 	
 	const UserHistory = Parse.Object.extend("UserHistory");
 	const query = new Parse.Query(UserHistory);
@@ -36,6 +40,10 @@ Parse.Cloud.define('validateUser', async(request) =>
 		result.set("banned", banned);
 		result.set("ip", clientIP);
 		result.set("version", version);
+		result.set("purchased", purchased);
+		result.set("devicetype", devicetype);
+		result.set("devicename", devicename);
+		result.set("devicemodel", devicemodel);
 		await result.save().then((result) => 
 		{
 			console.log("User history updated.");
@@ -53,6 +61,10 @@ Parse.Cloud.define('validateUser', async(request) =>
 		uhistory.set("banned", banned);
 		uhistory.set("ip", clientIP);
 		uhistory.set("version", version);
+		uhistory.set("purchased", purchased);
+		uhistory.set("devicetype", devicetype);
+		uhistory.set("devicename", devicename);
+		uhistory.set("devicemodel", devicemodel);
 		await uhistory.save().then((uhistory) => 
 		{
 			console.log("User history created.");
