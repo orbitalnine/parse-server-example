@@ -1,5 +1,6 @@
 
-var m_bannedIPs = [ "80.139.85.62" ];
+var m_bannedIPs = [ "80.139.85.62", "87.156.143.217" ];
+var m_bannedUsername = [ "g_a_1060033833193007731", "g_a_8306138703989681063", "g_TestPlayerID" ];
 
 Parse.Cloud.define('hello', function(req, res) 
 {
@@ -19,8 +20,8 @@ Parse.Cloud.define('validateUser', async(request) =>
 {
 	var clientIP = request.headers['x-forwarded-for'];
 	var currentDate = new Date();
-	var banned = (m_bannedIPs.indexOf(clientIP) >= 0);
 	var username = request.params.username;
+	var banned = (m_bannedIPs.indexOf(clientIP) >= 0) || ((m_bannedUsername.indexOf(username) >= 0));
 	var playername = request.params.playername;
 	var version = request.params.version;
 	var purchased = request.params.purchased;
