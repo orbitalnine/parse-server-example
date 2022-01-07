@@ -81,3 +81,11 @@ Parse.Cloud.define('validateUser', async(request) =>
 },{
 	fields : ['username', 'playername']
 });
+
+Parse.Cloud.define('getTime', async (request) =>
+{
+	let d = new Date();
+	let time = d.getTime();
+
+	return time;
+});
