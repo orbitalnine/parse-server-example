@@ -1,11 +1,14 @@
 
+// Banned player ips
 var m_bannedIPs = [ "80.139.85.62", "87.156.143.217" ];
 
+// Test method
 Parse.Cloud.define('hello', function(req, res) 
 {
   return 'Hello World!';
 });
 
+// Validate that a player is allow to access the server
 Parse.Cloud.define('validate', async(request) =>
 {
 	var clientIP = request.headers['x-forwarded-for'];
@@ -15,6 +18,7 @@ Parse.Cloud.define('validate', async(request) =>
 		return true;
 });
 
+// Validate that a player is allowed to access the server and store some analytics data
 Parse.Cloud.define('validateUser', async(request) =>
 {
 	var clientIP = request.headers['x-forwarded-for'];
@@ -82,6 +86,7 @@ Parse.Cloud.define('validateUser', async(request) =>
 	fields : ['username', 'playername']
 });
 
+// Get the server time
 Parse.Cloud.define('getTime', async (request) =>
 {
 	let d = new Date();
