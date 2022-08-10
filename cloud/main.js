@@ -1,7 +1,6 @@
 
 // Banned player ips
-var m_bannedIPs = [ "80.139.85.62", "87.156.143.217", "107.126.65.157" ];
-// 107.126.65.157 is getting around the posting time limit and spamming nonsense levels
+var m_bannedIPs = [ "80.139.85.62", "87.156.143.217" ];
 
 // Test method
 Parse.Cloud.define('hello', function(req, res) 
@@ -39,7 +38,10 @@ Parse.Cloud.define('validateUser', async(request) =>
 	const result = await query.first();
 	if (result != null)
 	{
-		banned = result.get("banned");
+		if (banned == false) // if they are not ip banned
+		{
+			banned = result.get("banned"); // check with the server banned field
+		}
 		result.set("username", username);
 		result.set("playername", playername);
 		result.set("lastlogin", currentDate);
