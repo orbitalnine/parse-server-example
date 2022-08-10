@@ -1,6 +1,7 @@
 
 // Banned player ips
-var m_bannedIPs = [ "80.139.85.62", "87.156.143.217" ];
+var m_bannedIPs = [ "80.139.85.62", "87.156.143.217", "107.126.65.157" ];
+// 107.126.65.157 is getting around the posting time limit and spamming nonsense levels
 
 // Test method
 Parse.Cloud.define('hello', function(req, res) 
