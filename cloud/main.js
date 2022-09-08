@@ -31,6 +31,7 @@ Parse.Cloud.define('validateUser', async(request) =>
 	var devicetype = request.params.devicetype;
 	var devicename = request.params.devicename;
 	var devicemodel = request.params.devicemodel;
+	var coins = request.params.coins;
 	
 	const UserHistory = Parse.Object.extend("UserHistory");
 	const query = new Parse.Query(UserHistory);
@@ -51,6 +52,7 @@ Parse.Cloud.define('validateUser', async(request) =>
 		result.set("devicetype", devicetype);
 		result.set("devicename", devicename);
 		result.set("devicemodel", devicemodel);
+		result.set("coins", coins);
 		await result.save().then((result) => 
 		{
 			console.log("User history updated.");
@@ -72,6 +74,7 @@ Parse.Cloud.define('validateUser', async(request) =>
 		uhistory.set("devicetype", devicetype);
 		uhistory.set("devicename", devicename);
 		uhistory.set("devicemodel", devicemodel);
+		uhistory.set("coins", coins);
 		await uhistory.save().then((uhistory) => 
 		{
 			console.log("User history created.");
