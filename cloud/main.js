@@ -24,7 +24,8 @@ Parse.Cloud.define('validateUser', async(request) =>
 	var clientIP = request.headers['x-forwarded-for'];
 	var currentDate = new Date();
 	var username = request.params.username;
-	var banned = (m_bannedIPs.indexOf(clientIP) >= 0);
+	var ipBanned = (m_bannedIPs.indexOf(clientIP) >= 0);
+	var banned = false;
 	var playername = request.params.playername;
 	var version = request.params.version;
 	var purchased = request.params.purchased;
@@ -37,16 +38,16 @@ Parse.Cloud.define('validateUser', async(request) =>
 	const query = new Parse.Query(UserHistory);
 	query.equalTo("username", username);
 	const result = await query.first();
+	
 	if (result != null)
 	{
-		if (banned == false) // if they are not ip banned
-		{
-			banned = result.get("banned"); // check with the server banned field
-		}
+		banned = result.get("banned");
+		
 		result.set("username", username);
 		result.set("playername", playername);
 		result.set("lastlogin", currentDate);
 		result.set("ip", clientIP);
+		result.set("ipbanned", ipBanned);
 		result.set("version", version);
 		result.set("purchased", purchased);
 		result.set("devicetype", devicetype);
@@ -68,6 +69,7 @@ Parse.Cloud.define('validateUser', async(request) =>
 		uhistory.set("playername", playername);
 		uhistory.set("lastlogin", currentDate);
 		uhistory.set("banned", banned);
+		uhistory.set("ipbanned", ipBanned);
 		uhistory.set("ip", clientIP);
 		uhistory.set("version", version);
 		uhistory.set("purchased", purchased);
@@ -84,7 +86,9 @@ Parse.Cloud.define('validateUser', async(request) =>
 		});
 	}
 	
-	if (banned)
+	console.log("User banned: " + banned + " User ipbanned: " + ipBanned);
+	
+	if (banned || ipBanned)
 		return false;
 	else
 		return true;
