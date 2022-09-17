@@ -86,8 +86,6 @@ Parse.Cloud.define('validateUser', async(request) =>
 		});
 	}
 	
-	console.log("User banned: " + banned + " User ipbanned: " + ipBanned);
-	
 	if (banned || ipBanned)
 		return false;
 	else
