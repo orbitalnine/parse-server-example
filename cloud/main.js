@@ -29,7 +29,6 @@ Parse.Cloud.define('validateUser', async(request) =>
 	var playername = request.params.playername;
 	var version = request.params.version;
 	var purchased = request.params.purchased;
-	var playpass = request.params.playpass;
 	var devicetype = request.params.devicetype;
 	var devicename = request.params.devicename;
 	var devicemodel = request.params.devicemodel;
@@ -51,7 +50,6 @@ Parse.Cloud.define('validateUser', async(request) =>
 		result.set("ipbanned", ipBanned);
 		result.set("version", version);
 		result.set("purchased", purchased);
-		result.set("playpass", playpass);
 		result.set("devicetype", devicetype);
 		result.set("devicename", devicename);
 		result.set("devicemodel", devicemodel);
@@ -75,7 +73,6 @@ Parse.Cloud.define('validateUser', async(request) =>
 		uhistory.set("ip", clientIP);
 		uhistory.set("version", version);
 		uhistory.set("purchased", purchased);
-		uhistory.set("playpass", playpass);
 		uhistory.set("devicetype", devicetype);
 		uhistory.set("devicename", devicename);
 		uhistory.set("devicemodel", devicemodel);
